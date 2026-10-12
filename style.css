@@ -1,0 +1,891 @@
+/* ==========================================================
+   Bewerbungs-Website David Hoffmann – Aussehen
+   Farben, Schriften und Abstände stehen als Variablen in :root.
+   Eine Farbe ändern = nur die Variable ändern.
+   ========================================================== */
+
+/* ---------- 1. Variablen ---------- */
+:root {
+  --bg: #0d1117;        /* Hintergrund */
+  --surface: #161b22;   /* Karten, Kacheln */
+  --border: #30363d;    /* Rahmen */
+  --text: #e6edf3;      /* Haupttext */
+  --muted: #9da7b3;     /* nur für Nebeninfos, nicht für wichtige Aussagen */
+  --prompt: #3fb950;    /* grüner Terminal-Prompt */
+  --accent: #a371f7;    /* Akzentfarbe (violett) */
+  --warn: #d29922;      /* [WARN]-Zeilen */
+
+  --font-mono: "Cascadia Mono", "Cascadia Code", Consolas, "SF Mono", Menlo, "DejaVu Sans Mono", monospace;
+  --font-sans: "Segoe UI", system-ui, -apple-system, Roboto, Arial, sans-serif;
+
+  --klein: max(18px, 0.82rem);     /* kleinste Schrift auf der Seite – nie unter 18 px */
+  --rand: clamp(16px, 4vw, 64px);  /* Abstand links und rechts */
+  --breite: 1240px;                /* maximale Breite des Inhalts */
+  --radius: 8px;                   /* Ecken von Karten und Kacheln */
+}
+
+/* ---------- 2. Grundlagen ---------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  /* Grundschrift wächst mit der Bildschirmhöhe: 22 px (768 px hoch) bis 26 px (1080 px hoch) */
+  font-size: clamp(22px, 2.4vh, 26px);
+  background: var(--bg);
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-sans);
+  line-height: 1.4;
+}
+
+h1,
+h2 {
+  margin: 0 0 0.3em;
+  font-weight: 700;
+  line-height: 1.1;
+}
+
+h1 {
+  font-size: clamp(48px, 5.6vh, 56px);
+}
+
+h2 {
+  font-size: clamp(44px, 4.8vh, 52px);
+}
+
+p {
+  margin: 0;
+}
+
+a {
+  color: var(--accent);
+}
+
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--bg);
+}
+
+/* ---------- 3. Abschnitte (Folien) ---------- */
+.folie {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  min-height: 100dvh;
+  max-width: calc(var(--breite) + 2 * var(--rand));
+  margin: 0 auto;
+  padding: clamp(20px, 5vh, 64px) var(--rand) 68px;  /* unten Platz für die Steuerung */
+}
+
+/* Der Fokus wird per Skript gesetzt – dafür ist kein sichtbarer Rahmen nötig */
+.folie:focus {
+  outline: none;
+}
+
+/* Ohne JavaScript: alle Abschnitte untereinander, getrennt durch eine Linie */
+.folie + .folie {
+  border-top: 1px solid var(--border);
+}
+
+/* Mit JavaScript: nur der aktive Abschnitt ist sichtbar */
+.js .folie {
+  display: none;
+  border-top: 0;
+}
+
+.js .folie.aktiv {
+  display: flex;
+}
+
+/* Befehlszeile oben in jedem Abschnitt: david@bewerbung:~$ ./befehl */
+.befehlszeile {
+  margin-bottom: 0.5em;
+  font-family: var(--font-mono);
+}
+
+.prompt {
+  color: var(--prompt);
+  font-weight: 700;
+}
+
+/* Während der Tipp-Animation steht ein Cursor hinter dem Befehl (Klasse setzt script.js) */
+.befehl.tippt::after {
+  content: "▌";
+  color: var(--prompt);
+}
+
+/* Button-artiger Link, z. B. "home" auf der Abschlussseite */
+.knopf {
+  display: inline-block;
+}
+
+/* ---------- 4. Startseite ---------- */
+.untertitel {
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+
+.kennzeile {
+  margin-top: 0.3em;
+  font-family: var(--font-mono);
+  font-size: var(--klein);
+  color: var(--muted);
+}
+
+/* Sechs Kacheln: am Desktop 3 × 2 */
+.kacheln {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(14px, 1.8vh, 24px);
+  margin-top: clamp(16px, 3.5vh, 40px);
+}
+
+/* Innenabstand wächst mit der Bildschirmhöhe, damit große Bildschirme nicht leer wirken */
+.kachel {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: clamp(14px, 2.2vh, 28px) clamp(18px, 1.6vw, 28px);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  color: var(--text);
+  text-decoration: none;
+  line-height: 1.3;
+}
+
+.kachel:hover {
+  border-color: var(--accent);
+}
+
+.kachel-kopf {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+
+.kachel-befehl {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  color: var(--prompt);
+}
+
+/* Tastenkürzel-Hinweis (1–6) oben rechts in der Kachel */
+kbd {
+  padding: 0 0.45em;
+  font-family: var(--font-mono);
+  font-size: var(--klein);
+  color: var(--muted);
+  border: 1px solid var(--border);
+  border-bottom-width: 2px;
+  border-radius: 4px;
+}
+
+/* "✓ ausgeführt": Platz ist immer reserviert, sichtbar erst nach dem Besuch */
+.haken {
+  margin-top: auto;
+  padding-top: 4px;
+  font-family: var(--font-mono);
+  font-size: var(--klein);
+  color: var(--prompt);
+  visibility: hidden;
+}
+
+.kachel.besucht .haken {
+  visibility: visible;
+}
+
+.fusszeile {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 28px;
+  margin-top: auto;  /* schiebt die Fußzeile ans untere Ende */
+  padding-top: 20px;
+  font-size: var(--klein);
+  color: var(--muted);
+}
+
+.fusszeile a {
+  font-family: var(--font-mono);
+}
+
+/* ---------- 5. Bausteine der Abschnitte ---------- */
+
+/* Hauptinhalt unter der Überschrift: steht mittig im freien Platz */
+.inhalt {
+  margin-block: auto;
+  padding-top: 8px;
+}
+
+h3 {
+  margin: 0 0 0.3em;
+  font-size: 1.1rem;
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+.unterzeile {
+  font-size: 1.15rem;
+  font-weight: 600;
+}
+
+/* Karten nebeneinander (2, 3 oder 4 Spalten) */
+.karten {
+  display: grid;
+  gap: clamp(14px, 1.8vh, 24px);
+}
+
+.karten-2 {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.karten-3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.karten-4 {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.karte {
+  padding: clamp(14px, 2.2vh, 28px) clamp(18px, 1.6vw, 28px);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  line-height: 1.35;
+}
+
+/* Werte-Karten: Name des Werts in Monospace und Akzentfarbe */
+.karte-wert h3 {
+  font-family: var(--font-mono);
+  font-size: var(--klein);
+  color: var(--accent);
+}
+
+/* Großer Kernsatz mit Akzentlinie links */
+.kernsatz {
+  margin-bottom: clamp(20px, 4vh, 48px);
+  padding-left: 0.8em;
+  border-left: 4px solid var(--accent);
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+/* Kasten im Terminal-Stil: links das Etikett ([NEWS], [WARN] …), rechts der Text */
+.log {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  gap: 8px 16px;
+  padding: 16px 20px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  font-family: var(--font-mono);
+  line-height: 1.35;
+}
+
+/* Jede Zeile legt ihre zwei Teile direkt ins Raster */
+.log p {
+  display: contents;
+}
+
+.log .log-titel {
+  display: block;
+  grid-column: 1 / -1;
+  font-size: var(--klein);
+  color: var(--muted);
+}
+
+.log-tag {
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.log-news,
+.log-warn {
+  color: var(--warn);
+}
+
+.log-ok {
+  color: var(--prompt);
+}
+
+/* Zentrale Frage in Akzentfarbe */
+.leitfrage {
+  margin: clamp(16px, 3.5vh, 40px) 0 clamp(12px, 2.5vh, 28px);
+  font-size: 1.7rem;
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--accent);
+}
+
+/* Informatik als Fundament: Text links, Schichten-Grafik rechts */
+.fundament {
+  display: flex;
+  align-items: center;
+  gap: clamp(24px, 4vw, 64px);
+}
+
+.fundament-text {
+  flex: 1;
+  font-size: 1.15rem;
+  font-weight: 600;
+}
+
+.schichten {
+  flex: 0 0 min(44%, 520px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.schicht {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 16px;
+  width: 100%;
+  padding: 12px 20px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+
+/* Obere Schicht schmaler – sie baut auf der unteren auf */
+.schicht-oben {
+  width: 76%;
+  border-color: var(--accent);
+}
+
+.schicht-name {
+  font-weight: 700;
+}
+
+.schicht-oben .schicht-name {
+  color: var(--accent);
+}
+
+.schicht-rolle {
+  font-family: var(--font-mono);
+  font-size: var(--klein);
+  color: var(--muted);
+}
+
+/* Zeitstrahl (Desktop): 8 Spalten, Stationen abwechselnd über und unter der Linie.
+   Jede Station ist 2 Spalten breit und beginnt an ihrem Punkt auf der Linie. */
+.zeitstrahl {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  grid-template-rows: auto 4px auto;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* Die waagerechte Linie (mittlere Zeile des Rasters) */
+.zeitstrahl::before {
+  content: "";
+  grid-row: 2;
+  grid-column: 1 / -1;
+  background: var(--border);
+  border-radius: 2px;
+}
+
+.station {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin-right: 16px;
+  padding-left: 14px;
+  border-left: 2px solid var(--border);  /* Verbindung zur Linie */
+  line-height: 1.3;
+}
+
+.station:nth-child(odd) {
+  grid-row: 1;
+  align-self: end;
+  padding-bottom: 14px;
+}
+
+.station:nth-child(even) {
+  grid-row: 3;
+  align-self: start;
+  padding-top: 14px;
+}
+
+.station:nth-child(1) { grid-column: 1 / span 2; }
+.station:nth-child(2) { grid-column: 2 / span 2; }
+.station:nth-child(3) { grid-column: 3 / span 2; }
+.station:nth-child(4) { grid-column: 4 / span 2; }
+.station:nth-child(5) { grid-column: 5 / span 2; }
+.station:nth-child(6) { grid-column: 6 / span 2; }
+.station:nth-child(7) { grid-column: 7 / span 2; }
+
+/* Punkt auf der Linie */
+.station::before {
+  content: "";
+  position: absolute;
+  left: -8px;
+  width: 14px;
+  height: 14px;
+  background: var(--bg);
+  border: 3px solid var(--prompt);
+  border-radius: 50%;
+}
+
+.station:nth-child(odd)::before {
+  bottom: -9px;
+}
+
+.station:nth-child(even)::before {
+  top: -9px;
+}
+
+.station-datum {
+  font-family: var(--font-mono);
+  font-size: var(--klein);
+  font-weight: 700;
+  color: var(--prompt);
+}
+
+.station-titel {
+  font-weight: 600;
+  hyphens: auto;
+  overflow-wrap: break-word;
+}
+
+.station-detail {
+  font-size: var(--klein);
+  color: var(--muted);
+}
+
+/* Das Ziel 2027 ist hervorgehoben */
+.station-ziel {
+  border-left-color: var(--accent);
+}
+
+.station-ziel::before {
+  background: var(--accent);
+  border-color: var(--accent);
+}
+
+.station-ziel .station-datum,
+.station-ziel .station-titel {
+  color: var(--accent);
+}
+
+/* Kopf von "Wer ich bin": Überschrift links, Hobbys rechts */
+.kopfbereich {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 24px;
+}
+
+.nebenbox {
+  padding: 12px 18px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  font-size: var(--klein);
+}
+
+.nebenbox-titel {
+  margin-bottom: 4px;
+  font-family: var(--font-mono);
+  color: var(--muted);
+}
+
+.nebenbox ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* Demo: Leitfrage, Ablauf in 3 Schritten, Ergebnis */
+.frage {
+  font-size: 1.3rem;
+  font-weight: 700;
+}
+
+.ablauf {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 48px;
+  margin: clamp(14px, 3vh, 36px) 0;
+  padding: 0;
+  list-style: none;
+}
+
+.schritt {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: clamp(14px, 2.2vh, 28px) clamp(18px, 1.6vw, 28px);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  line-height: 1.35;
+}
+
+/* Pfeil zwischen den Schritten */
+.schritt:not(:last-child)::after {
+  content: "→";
+  position: absolute;
+  top: 50%;
+  right: -36px;
+  transform: translateY(-50%);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--accent);
+}
+
+.schritt-nr {
+  font-family: var(--font-mono);
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--accent);
+}
+
+.schritt-code {
+  margin-top: auto;
+  font-family: var(--font-mono);
+  font-size: var(--klein);
+  color: var(--muted);
+  overflow-wrap: anywhere;
+}
+
+.hervor {
+  font-weight: 700;
+  color: var(--accent);
+}
+
+.ergebnis {
+  font-size: 1.15rem;
+  font-weight: 700;
+}
+
+.ergebnis .log-tag {
+  margin-right: 0.3em;
+  font-family: var(--font-mono);
+}
+
+.ergebnis-prinzip {
+  margin-left: 0.5em;
+  font-family: var(--font-mono);
+  font-size: var(--klein);
+  font-weight: 400;
+  color: var(--muted);
+}
+
+/* Button und Hinweis nebeneinander (am Handy untereinander) */
+.aktionen {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 20px;
+  margin-top: clamp(12px, 2.5vh, 28px);
+}
+
+.hinweis {
+  font-size: var(--klein);
+  color: var(--muted);
+}
+
+/* Verhindert Zeilenumbrüche, z. B. in "(SHA-1)" */
+.zusammen {
+  white-space: nowrap;
+}
+
+/* Warum ich: "Known Issues" – Überschrift sitzt als Etikett auf dem oberen Rahmen */
+.known-issues {
+  position: relative;
+  gap: 4px 16px;
+  margin-top: clamp(22px, 3.5vh, 40px);
+  padding: 18px 20px 12px;
+}
+
+.known-issues .log-titel {
+  grid-column: auto;  /* sonst bezieht sich "left" auf die Rasterspalte statt auf den Kasten */
+  position: absolute;
+  top: 0;
+  left: 12px;
+  transform: translateY(-50%);
+  padding: 0 8px;
+  background: var(--bg);
+}
+
+/* Abschluss */
+.danke {
+  margin-bottom: 0.15em;
+  font-size: clamp(72px, 11vh, 120px);
+}
+
+.abschluss-frage {
+  font-size: 1.6rem;
+  font-weight: 600;
+}
+
+.abschluss-link {
+  margin: 1em 0 1.2em;
+  font-family: var(--font-mono);
+  font-size: var(--klein);
+}
+
+/* ---------- 6. Steuerung: zurück / home / weiter + Fortschritt ---------- */
+.steuerung {
+  display: none;  /* ohne JavaScript funktionslos, daher versteckt */
+}
+
+.js .steuerung {
+  position: fixed;
+  right: var(--rand);
+  bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.steuerung button,
+.knopf {
+  padding: 6px 14px;
+  font-family: var(--font-mono);
+  font-size: var(--klein);
+  color: var(--text);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.steuerung button:hover,
+.knopf:hover {
+  border-color: var(--accent);
+}
+
+.steuerung button:disabled {
+  opacity: 0.35;
+  border-color: var(--border);
+  cursor: default;
+}
+
+.fortschritt {
+  min-width: 5ch;
+  text-align: right;
+  font-family: var(--font-mono);
+  font-size: var(--klein);
+  color: var(--muted);
+}
+
+/* ---------- 7. Mittlere Breiten (Tablet, kleines Fenster) ---------- */
+/* "screen": gilt nur am Bildschirm, nicht beim Drucken */
+@media screen and (max-width: 1099px) {
+  .kacheln,
+  .karten-4 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Zeitstrahl senkrecht, sobald es waagerecht zu eng wird */
+@media screen and (max-width: 1023px) {
+  .zeitstrahl {
+    display: block;
+  }
+
+  .zeitstrahl::before {
+    display: none;
+  }
+
+  .station,
+  .station:nth-child(odd),
+  .station:nth-child(even) {
+    margin: 0 0 0 8px;
+    padding: 0 0 18px 20px;
+  }
+
+  .station:nth-child(odd)::before,
+  .station:nth-child(even)::before {
+    top: 4px;
+    bottom: auto;
+  }
+}
+
+/* ---------- 8. Handy (unter 768 px) ---------- */
+@media screen and (max-width: 767px) {
+  html {
+    font-size: 20px;
+  }
+
+  h1 {
+    font-size: 40px;
+  }
+
+  h2 {
+    font-size: 32px;
+  }
+
+  .folie {
+    padding: 24px 16px 96px;
+  }
+
+  .kacheln {
+    grid-template-columns: 1fr;
+  }
+
+  .kachel {
+    padding: 14px 16px;
+  }
+
+  /* Am Handy gibt es keine Tastatur-Kürzel */
+  .kachel kbd {
+    display: none;
+  }
+
+  /* Haken nur anzeigen, wenn besucht – am Handy wird kein Platz reserviert */
+  .haken {
+    display: none;
+  }
+
+  .kachel.besucht .haken {
+    display: block;
+  }
+
+  /* Alles untereinander statt nebeneinander */
+  .karten-2,
+  .karten-3,
+  .karten-4,
+  .ablauf {
+    grid-template-columns: 1fr;
+  }
+
+  .kopfbereich,
+  .fundament {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .schichten {
+    flex-basis: auto;
+  }
+
+  /* Log: Etikett über dem Text */
+  .log {
+    grid-template-columns: 1fr;
+    gap: 2px;
+  }
+
+  .log-tag {
+    margin-top: 8px;
+  }
+
+  /* Pfeile zwischen den Schritten zeigen nach unten */
+  .ablauf {
+    gap: 40px;
+  }
+
+  .schritt:not(:last-child)::after {
+    content: "↓";
+    top: auto;
+    right: auto;
+    bottom: -38px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .kernsatz {
+    font-size: 1.3rem;
+  }
+
+  .leitfrage {
+    font-size: 1.4rem;
+  }
+
+  .danke {
+    font-size: 64px;
+  }
+
+  /* Steuerung als feste Leiste am unteren Rand */
+  .js .steuerung {
+    left: 0;
+    right: 0;
+    bottom: 0;
+    justify-content: space-between;
+    padding: 10px 16px calc(10px + env(safe-area-inset-bottom));
+    background: var(--surface);
+    border-top: 1px solid var(--border);
+  }
+}
+
+/* ---------- 9. Druck (Backup-PDF im Format 16:9) ---------- */
+@media print {
+  @page {
+    size: 13.333in 7.5in;
+    margin: 0;
+  }
+
+  /* Dunkles Design auch im PDF behalten */
+  html,
+  body,
+  .folie {
+    background: var(--bg);
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  html {
+    font-size: 22px;
+  }
+
+  h1 {
+    font-size: 52px;
+  }
+
+  h2 {
+    font-size: 46px;
+  }
+
+  .steuerung {
+    display: none !important;
+  }
+
+  /* Jeder Abschnitt genau eine Seite */
+  .folie,
+  .js .folie {
+    display: flex;
+    height: 7.5in;
+    min-height: 0;
+    max-width: none;
+    padding: 40px 64px;
+    border-top: 0;
+    overflow: hidden;
+    break-after: page;
+  }
+
+  .folie:last-child {
+    break-after: auto;
+  }
+
+  .haken,
+  .kachel kbd {
+    visibility: hidden;
+  }
+}

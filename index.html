@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Content-Security-Policy: Der Browser lädt nur Dateien von dieser Seite selbst,
+       keine fremden Skripte, Schriften oder Tracker, und führt keinen Inline-Code aus -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; media-src 'self'; style-src 'self'; script-src 'self'">
+  <!-- Seite nicht in Suchmaschinen aufnehmen -->
+  <meta name="robots" content="noindex">
+  <meta name="description" content="Bewerbung von David Hoffmann – Duales Studium Informatik mit Cyber Security">
+  <title>David Hoffmann · Bewerbung</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="style.css">
+  <!-- Bewusst ohne "defer": setzt sofort die Klasse "js", damit beim Laden nicht kurz alle Abschnitte aufblitzen -->
+  <script src="script.js"></script>
+</head>
+<body>
+  <main>
+
+    <!-- 0: Startseite mit Übersicht -->
+    <section id="start" class="folie" tabindex="-1" aria-labelledby="titel-start">
+      <p class="befehlszeile"><span class="prompt">david@bewerbung:~$</span> <span class="befehl">ls</span></p>
+      <h1 id="titel-start">David Hoffmann</h1>
+      <p class="untertitel">Vom Speditionskaufmann zur Cyber Security</p>
+      <p class="kennzeile">Bewerbung · Duales Studium Informatik – Cyber Security · 2027</p>
+
+      <nav class="kacheln" aria-label="Übersicht der Abschnitte">
+        <a class="kachel" href="#whoami">
+          <span class="kachel-kopf"><span class="kachel-befehl">whoami</span><kbd>1</kbd></span>
+          <span class="kachel-text">Wer ich bin &amp; mein Weg</span>
+          <span class="haken">✓ ausgeführt</span>
+        </a>
+        <a class="kachel" href="#warum_dual">
+          <span class="kachel-kopf"><span class="kachel-befehl">./warum_dual</span><kbd>2</kbd></span>
+          <span class="kachel-text">Warum ein duales Studium?</span>
+          <span class="haken">✓ ausgeführt</span>
+        </a>
+        <a class="kachel" href="#warum_informatik">
+          <span class="kachel-kopf"><span class="kachel-befehl">./warum_informatik</span><kbd>3</kbd></span>
+          <span class="kachel-text">Warum Informatik mit Cyber Security?</span>
+          <span class="haken">✓ ausgeführt</span>
+        </a>
+        <a class="kachel" href="#demo">
+          <span class="kachel-kopf"><span class="kachel-befehl">./demo</span><kbd>4</kbd></span>
+          <span class="kachel-text">Mein Projekt: Passwort-Prüfer</span>
+          <span class="haken">✓ ausgeführt</span>
+        </a>
+        <a class="kachel" href="#warum_accenture">
+          <span class="kachel-kopf"><span class="kachel-befehl">./warum_accenture</span><kbd>5</kbd></span>
+          <span class="kachel-text">Warum Accenture?</span>
+          <span class="haken">✓ ausgeführt</span>
+        </a>
+        <a class="kachel" href="#warum_ich">
+          <span class="kachel-kopf"><span class="kachel-befehl">./warum_ich</span><kbd>6</kbd></span>
+          <span class="kachel-text">Warum ich?</span>
+          <span class="haken">✓ ausgeführt</span>
+        </a>
+      </nav>
+
+      <footer class="fusszeile">
+        <a href="https://github.com/Symnnix" target="_blank" rel="noopener noreferrer">github.com/Symnnix</a>
+        <span>Diese Seite lädt keine externen Skripte, Schriften oder Tracker.</span>
+      </footer>
+    </section>
+
+    <!-- 1: Wer ich bin -->
+    <section id="whoami" class="folie" tabindex="-1" aria-labelledby="titel-whoami">
+      <p class="befehlszeile"><span class="prompt">david@bewerbung:~$</span> <span class="befehl">whoami</span></p>
+      <div class="kopfbereich">
+        <div>
+          <h2 id="titel-whoami">Wer ich bin</h2>
+          <p class="kennzeile">David Hoffmann · Raum Coburg</p>
+        </div>
+        <aside class="nebenbox" aria-label="Außerhalb der Arbeit">
+          <p class="nebenbox-titel">Außerhalb der Arbeit</p>
+          <ul>
+            <li><strong>Kraftsport</strong> – seit über zwei Jahren regelmäßig im Gym</li>
+            <li><strong>Schwimmen</strong> – zum Abschalten</li>
+          </ul>
+        </aside>
+      </div>
+
+      <!-- Zeitstrahl: am Desktop waagerecht (Stationen abwechselnd oben/unten), am Handy senkrecht -->
+      <div class="inhalt">
+        <ol class="zeitstrahl" aria-label="Mein Weg">
+          <li class="station">
+            <span class="station-datum">07/2021</span>
+            <span class="station-titel">Mittlere Reife</span>
+            <span class="station-detail">Wirtschaftsschule Coburg</span>
+          </li>
+          <li class="station">
+            <span class="station-datum">09/2021 – 06/2024</span>
+            <span class="station-titel">Ausbildung Kaufmann für Spedition und Logistikdienstleistung</span>
+            <span class="station-detail">Schumacher Packaging GmbH · inkl. Auslandspraktikum in Valencia</span>
+          </li>
+          <li class="station">
+            <span class="station-datum">07/2024 – 08/2026</span>
+            <span class="station-titel">DSV · Rechnungswesen</span>
+            <span class="station-detail">drei Großkunden eigenständig betreut</span>
+          </li>
+          <li class="station">
+            <span class="station-datum">08 – 09/2026</span>
+            <span class="station-titel">Programmierkurs · Java</span>
+            <span class="station-detail">vier Wochen Vollzeit</span>
+          </li>
+          <li class="station">
+            <span class="station-datum">seit 09/2026</span>
+            <span class="station-titel">Berufsoberschule Coburg</span>
+            <span class="station-detail">Ziel: Fachhochschulreife 07/2027</span>
+          </li>
+          <li class="station">
+            <span class="station-datum">2026</span>
+            <span class="station-titel">Eigenes Projekt: Passwort-Prüfer</span>
+            <span class="station-detail">Python</span>
+          </li>
+          <li class="station station-ziel">
+            <span class="station-datum">2027</span>
+            <span class="station-titel">Ziel: Duales Studium Informatik – Cyber Security</span>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- 2: Warum ein duales Studium? -->
+    <section id="warum_dual" class="folie" tabindex="-1" aria-labelledby="titel-warum_dual">
+      <p class="befehlszeile"><span class="prompt">david@bewerbung:~$</span> <span class="befehl">./warum_dual</span></p>
+      <h2 id="titel-warum_dual">Warum ein duales Studium?</h2>
+      <div class="inhalt">
+        <p class="kernsatz">„Ich lerne am besten, wenn ich Wissen direkt anwende.“</p>
+        <div class="karten karten-3">
+          <article class="karte">
+            <h3>Quereinsteiger</h3>
+            <p>Ich komme aus dem Kaufmännischen. Praxis von Anfang an schließt die Lücke am schnellsten.</p>
+          </article>
+          <article class="karte">
+            <h3>Theorie → Praxis</h3>
+            <p>Was ich an der DHBW lerne, setze ich in der nächsten Praxisphase direkt um.</p>
+          </article>
+          <article class="karte">
+            <h3>Bewährtes Modell</h3>
+            <p>Den Wechsel zwischen Schule und Betrieb kenne ich aus meiner Ausbildung.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3: Warum Informatik mit Cyber Security? -->
+    <section id="warum_informatik" class="folie" tabindex="-1" aria-labelledby="titel-warum_informatik">
+      <p class="befehlszeile"><span class="prompt">david@bewerbung:~$</span> <span class="befehl">./warum_informatik</span></p>
+      <h2 id="titel-warum_informatik">Warum Informatik mit Cyber Security?</h2>
+      <div class="inhalt">
+        <!-- Zwei Auslöser im Log-Stil: links das Etikett, rechts der Text -->
+        <div class="log">
+          <p><span class="log-tag log-news">[NEWS]</span> <span>Immer wieder werden Unternehmen gehackt und Daten gestohlen.</span></p>
+          <p><span class="log-tag log-news">[NEWS] 07/2026</span> <span>KI-Modelle brechen bei einem Sicherheitstest aus ihrer abgeschotteten Testumgebung aus.</span></p>
+        </div>
+
+        <p class="leitfrage">Wie sichert man ein System eigentlich ab?</p>
+
+        <div class="fundament">
+          <p class="fundament-text">Um ein System abzusichern, muss ich verstehen, wie es gebaut ist.</p>
+          <!-- Kleine Grafik: Cyber Security baut auf Informatik auf -->
+          <div class="schichten">
+            <p class="schicht schicht-oben"><span class="schicht-name">Cyber Security</span> <span class="schicht-rolle">Vertiefung</span></p>
+            <p class="schicht"><span class="schicht-name">Informatik</span> <span class="schicht-rolle">Fundament</span></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4: Mein Projekt: Passwort-Prüfer -->
+    <section id="demo" class="folie" tabindex="-1" aria-labelledby="titel-demo">
+      <p class="befehlszeile"><span class="prompt">david@bewerbung:~$</span> <span class="befehl">./demo</span></p>
+      <h2 id="titel-demo">Mein Projekt: Passwort-Prüfer</h2>
+      <div class="inhalt">
+        <p class="frage">Ist mein Passwort schon in einem Datenleck aufgetaucht?</p>
+
+        <!-- Ablauf in drei Schritten; Beispielwerte aus der README (Passwort "password") -->
+        <ol class="ablauf">
+          <li class="schritt">
+            <span class="schritt-nr">1</span>
+            <p>Passwort wird <strong>lokal</strong> gehasht <span class="zusammen">(SHA-1)</span></p>
+            <code class="schritt-code"><span class="hervor">5BAA6</span>1E4C9B93F3F…</code>
+          </li>
+          <li class="schritt">
+            <span class="schritt-nr">2</span>
+            <p>Nur die <strong>ersten 5 Zeichen</strong> des Hashs gehen an die „Pwned Passwords“-API von Have I Been Pwned</p>
+            <code class="schritt-code">/range/<span class="hervor">5BAA6</span></code>
+          </li>
+          <li class="schritt">
+            <span class="schritt-nr">3</span>
+            <p>Die API liefert alle bekannten Hash-Enden zu diesem Anfang → Abgleich <strong>lokal</strong> auf dem eigenen Rechner</p>
+            <code class="schritt-code">1E4C9B93F3F…:Anzahl</code>
+          </li>
+        </ol>
+
+        <p class="ergebnis"><span class="log-tag log-ok">[OK]</span> Das Passwort verlässt nie den Rechner. <span class="ergebnis-prinzip">Prinzip: k-Anonymität</span></p>
+
+        <div class="aktionen">
+          <a class="knopf" href="https://github.com/Symnnix/Passwort-Pruefer" target="_blank" rel="noopener noreferrer">Code auf GitHub</a>
+          <p class="hinweis">Entwickelt mit KI-Unterstützung – das Verfahren habe ich verstanden und selbst getestet.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5: Warum Accenture? -->
+    <section id="warum_accenture" class="folie" tabindex="-1" aria-labelledby="titel-warum_accenture">
+      <p class="befehlszeile"><span class="prompt">david@bewerbung:~$</span> <span class="befehl">./warum_accenture</span></p>
+      <h2 id="titel-warum_accenture">Warum Accenture?</h2>
+      <div class="inhalt">
+        <!-- Zahlen laut newsroom.accenture.com/fact-sheet (abgerufen am 09.10.2026) -->
+        <div class="karten karten-2">
+          <article class="karte">
+            <h3>Genau mein Studium</h3>
+            <p>Informatik mit Vertiefung Cyber Security an der DHBW Mannheim.</p>
+          </article>
+          <article class="karte">
+            <h3>Security ist Kerngeschäft</h3>
+            <p>Cybersecurity ist einer von sieben Leistungsbereichen („Reinvention Services“) von Accenture.</p>
+          </article>
+          <article class="karte">
+            <h3>Lernen von vielen</h3>
+            <p>Über 800.000 Mitarbeitende weltweit: viele Spezialisten, viele Kunden, viele Branchen. Mich interessiert, wie ein Unternehmen dieser Größe funktioniert.</p>
+          </article>
+          <article class="karte">
+            <h3>Systeme absichern</h3>
+            <p>„Wie sichert man ein System eigentlich ab?“ – diese Frage hat mich zur Cyber Security gebracht. Bei Accenture will ich lernen, wie man sie in der Praxis beantwortet.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6: Warum ich? -->
+    <section id="warum_ich" class="folie" tabindex="-1" aria-labelledby="titel-warum_ich">
+      <p class="befehlszeile"><span class="prompt">david@bewerbung:~$</span> <span class="befehl">./warum_ich</span></p>
+      <h2 id="titel-warum_ich">Warum ich?</h2>
+      <p class="unterzeile">Accentures Werte – und wo ich sie schon gelebt habe</p>
+      <div class="inhalt">
+        <div class="karten karten-4">
+          <article class="karte karte-wert">
+            <h3>Client Value Creation</h3>
+            <p>Bei DSV drei Großkunden eigenständig betreut.</p>
+          </article>
+          <article class="karte karte-wert">
+            <h3>Stewardship</h3>
+            <p>Monatsabschluss unter Zeitdruck: rechtzeitig Unterstützung organisiert, gemeinsam fristgerecht abgeschlossen.</p>
+          </article>
+          <article class="karte karte-wert">
+            <h3>One Global Network</h3>
+            <p>Internationales Logistikunternehmen, Auslandspraktikum.</p>
+          </article>
+          <article class="karte karte-wert">
+            <h3>Integrity</h3>
+            <p>Ich sage offen, was ich kann und was noch nicht. ↓</p>
+          </article>
+        </div>
+
+        <div class="log known-issues">
+          <p class="log-titel">Known Issues</p>
+          <p><span class="log-tag log-warn">[WARN]</span> <span>Noch keine Berufserfahrung in der IT</span></p>
+          <p><span class="log-tag log-ok">[FIX]</span> <span>Programmierkurs, eigenes Projekt, Berufsoberschule mit Ziel Fachhochschulreife</span></p>
+          <p><span class="log-tag log-warn">[WARN]</span> <span>Mit Fachhochschulreife ist für die DHBW die Deltaprüfung nötig</span></p>
+          <p><span class="log-tag log-ok">[FIX]</span> <span>Studierfähigkeitstest am DHBW-Testzentrum vor Studienbeginn</span></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7: Abschluss -->
+    <section id="exit" class="folie" tabindex="-1" aria-labelledby="titel-exit">
+      <p class="befehlszeile"><span class="prompt">david@bewerbung:~$</span> <span class="befehl">exit</span></p>
+      <div class="inhalt">
+        <h2 id="titel-exit" class="danke">Danke!</h2>
+        <p class="abschluss-frage">Fragen? Gern.</p>
+        <p class="abschluss-link"><a href="https://github.com/Symnnix" target="_blank" rel="noopener noreferrer">github.com/Symnnix</a></p>
+        <!-- Zurück zur Übersicht für die Fragerunde -->
+        <p><a class="knopf" href="#start">home</a></p>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Steuerung unten rechts (am Handy: Leiste unten). Wird nur mit JavaScript angezeigt. -->
+  <nav class="steuerung" aria-label="Folien-Steuerung">
+    <button type="button" id="knopf-zurueck">zurück</button>
+    <button type="button" id="knopf-home">home</button>
+    <button type="button" id="knopf-weiter">weiter</button>
+    <span id="fortschritt" class="fortschritt"></span>
+  </nav>
+</body>
+</html>
