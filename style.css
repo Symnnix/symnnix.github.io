@@ -596,18 +596,13 @@ h3 {
   color: var(--muted);
 }
 
-/* Button und Hinweis nebeneinander (am Handy untereinander) */
+/* Zeile mit dem Button "Code auf GitHub" */
 .aktionen {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   gap: 10px 20px;
   margin-top: clamp(12px, 2.5vh, 28px);
-}
-
-.hinweis {
-  font-size: var(--klein);
-  color: var(--muted);
 }
 
 /* Verhindert Zeilenumbrüche, z. B. in "(SHA-1)" */
